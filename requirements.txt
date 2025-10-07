@@ -1,0 +1,5 @@
+opencv-python
+numpy
+gpiozero
+picamera2
+imx500
