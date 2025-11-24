@@ -1,4 +1,7 @@
 # ChipuRobot: A Raspberry Pi–Based Educational Robotics Kit for Public Secondary Schools in Kenya
+138982 - Cindy Mugure Gachuhi
+
+Supervisor: Eunice Manyasi
 
 ## Background
 
