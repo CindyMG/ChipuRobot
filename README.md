@@ -150,6 +150,10 @@ Make sure connected peripherals (motors, camera, mic) are properly wired.
 
 ---
 
+## Project Demonstration
+
+Kindly access this link to view the project demo: https://drive.google.com/file/d/1ZYVDbMH3jkDoCxLr-mEOJyrBzP6gV0bF/view?usp=sharing
+
 ## Educational Value
 
 The kit allows learners to:
