@@ -1,5 +1,11 @@
 opencv-python
 numpy
 gpiozero
+RPi.GPIO
 picamera2
-imx500
+pyaudio
+vosk
+librosa
+sounddevice
+scipy
+
