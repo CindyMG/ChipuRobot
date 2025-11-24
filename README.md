@@ -1,176 +1,165 @@
-# ChipuRobot: A Raspberry-Pi Based Educational Robotics Kit for Public Secondary Schools in Kenya
+# ChipuRobot: A Raspberry Pi–Based Educational Robotics Kit for Public Secondary Schools in Kenya
 
-## Project Description
-The **Raspberry Pi Educational Robot** is a hands-on learning platform designed to introduce high school students to **robotics, AI, and STEM concepts**. The project focuses on developing a modular robot that can perform basic navigation tasks, respond to its surroundings, and eventually interact with users through voice commands.
+## Background
 
-This robot demonstrates key robotics principles such as:
-- Sensor integration and obstacle detection  
-- Motion control and path planning  
-- Real-time data processing  
-- Voice interaction and AI integration (planned)  
+As Kenya transitions into the Competency-Based Curriculum (CBC), education at the senior secondary level is becoming increasingly oriented towards specialization and career readiness. Pathways such as Science, Technology, Engineering, and Mathematics (STEM) are being emphasized, with learning outcomes designed to foster pre-career practical exposure.
 
-The project aims to bridge the gap between theoretical STEM education and practical robotics experience by offering a tangible system students can learn from, modify, and experiment with.
+However, public secondary schools often lack access to modern tools, digital labs, or practical robotics resources that can fulfill these learning objectives. Most STEM teaching in such institutions is either theoretical or delivered via static demonstrations. Interactive, hands-on learning, critical for fostering innovation, curiosity, and technical skills, is limited.
+
+This project addresses this gap by introducing a practical robotics kit that students and teachers can use in diverse ways: in class for technical demonstrations, in clubs or competitions for extracurricular exploration, or during independent tinkering. The kit is adaptable, modular, and scalable.
+
+## Problem Statement
+
+Despite the increasing demand for robotics and automation skills globally, most Kenyan public secondary schools lack the infrastructure, tools, or technical expertise required to introduce students to robotics in a meaningful way. While private schools and international curricula increasingly integrate robotics, public schools are often left behind due to high costs of kits, limited digital resources, or insufficient training.
+
+## Project Objective
+
+To develop a modular, open-ended educational robotics kit that empowers students in public Kenyan secondary schools to explore and learn robotics through hands-on, interactive experimentation; independent of internet connectivity or high-maintenance components.
+
+## Justification
+
+This kit is designed not just as a static teaching tool but as a flexible, student-driven learning aid. Its use of Raspberry Pi, camera-based vision, and offline-capable models ensures functionality even in low-resource environments. Unlike traditional kits, it includes:
+
+- Interactive modules (voice, vision, navigation)
+- Locally crafted materials (laser-cut chassis, 3D-printed mounts)
+- Replaceable and maintainable parts
+- Scalable architecture for further projects
+
+The robot serves as both an introduction to robotics and a launchpad for creative innovation among learners.
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
-```
+```bash
 .
-├── main.py          # Core control logic for movement and sensors
-├── requirements.txt # Python dependencies (to be updated)
-├── README.md        # Project documentation
-└── .github/         # GitHub configurations and workflows
+├── .github/                # GitHub classroom configuration
+├── README.md               # Project documentation
+├── autonomous_navigation.py # Module 2: Autonomous Navigation
+├── user_detection.py       # Module 1: User Detection
+├── voice_control.py        # Module 3: Voice-Controlled Movement
+├── requirements.txt        # Project dependencies
 ```
 
+---
 
-As development progresses, additional folders (e.g., `/modules`, `/voice`, `/tests`) will be added for better organisation.
+## Component Overview
+
+### Hardware
+
+| Component          | Function                                      |
+| ------------------ | --------------------------------------------- |
+| Raspberry Pi 5     | Primary microcontroller and compute board     |
+| DC Motors          | Movement and locomotion                       |
+| L298N Motor Driver | Interfaces motor with Raspberry Pi PWM output |
+| Pi Camera 2        | Vision for user detection and navigation      |
+| USB Microphone     | Captures voice commands                       |
+| LiPo Battery Pack  | Power source for motors                       |
+| Power Bank         | Power for the Raspberry Pi                    |
+| Laser-Cut Chassis  | Mounting frame for all components             |
+| 3D-Printed Mounts  | Modular component holders (camera, Pi, etc.)  |
+
+### Software Tools
+
+- Python 3
+- Raspberry Pi OS 
+- OpenCV
+- gpiozero
+- picamera2
+- PyAudio
+- Vosk (speech recognition engine)
 
 ---
 
-## Features
+## Architecture Overview
 
-### Implemented
-- **Basic Motor Control:**  
-  Controls DC motors using an L298N motor driver via Raspberry Pi GPIO pins.  
-- **Hardware Assembly:**  
-  Robot chassis, motor driver, picamera2 and Raspberry Pi setup completed and tested.  
+The robot consists of three main learning modules:
 
-### In Progress 
-- **LiDAR Integration:**  
-  Preparing to include LiDAR for accurate distance sensing and mapping.  
+1. **User Detection**  
+   Uses the Raspberry Pi camera and AI models for person detection. The robot follows a detected person using bounding-box logic, steering and adjusting based on their position.
 
-### Upcoming Features
-- **Voice Command Interface:**  
-  Integration of microphone and speech recognition to control robot movement.   
+2. **Autonomous Navigation**  
+   Applies grayscale image processing to detect obstacles using only a camera. Upon detecting an obstacle, the robot dynamically alters its path through timed motor turns.
 
----
+3. **Voice Control**  
+   Implements voice-activated movement using the Vosk speech recognition engine. Recognizes keywords like "forward", "left", "right", and translates them into motor actions.
 
-## Hardware Components
-| Component | Purpose |
-|------------|----------|
-| **Raspberry Pi 4 / 5** | Main processing unit controlling sensors and motors |
-| **L298N Motor Driver** | Controls direction and speed of DC motors |
-| **DC Motors (x2)** | Enable robot movement |
-| **LiDAR Sensor (Planned)** | For precise environmental mapping |
-| **USB Microphone (Planned)** | Captures user voice commands |
-| **Lipo Battery Pack** | Powers the system |
+Each module is independently executable and introduces key robotics concepts: vision, control logic, speech processing, and automation.
 
 ---
 
-## Software and Tools
-- **Programming Language:** Python 3  
-- **Libraries Used:**  
-  - `RPi.GPIO` – Controls Raspberry Pi GPIO pins  
-- **Operating System:** Raspberry Pi OS (Bullseye)  
+## Comparative Analysis of Robotics Kits
+
+| Kit               | Learning Curve    | Local Maintenance | Interactivity | Cost     | Offline Use | Modularity |
+| ----------------- | ----------------- | ----------------- | ------------- | -------- | ----------- | ---------- |
+| LEGO Mindstorms   | Moderate          | Low               | High          | High     | Limited     | High       |
+| Arduino Kits      | High              | Moderate          | Low           | Moderate | Yes         | Moderate   |
+| VEX Robotics      | Moderate          | Low               | High          | High     | No          | High       |
+| **ChipuRobot**    | Beginner–Friendly | High              | High          | Moderate | Yes         | High       |
+
+> Note: ChipuRobot prioritizes offline, customizable interaction using lightweight, pretrained models, designed to work without cloud APIs or advanced infrastructure.
 
 ---
 
-## Project Setup Walkthrough
+## Setup Instructions
 
 ### 1. Clone the Repository
-```
-git clone https://github.com/yourusername/raspberry-pi-educational-robot.git
-cd raspberry-pi-educational-robot
+
+```bash
+git clone https://github.com/CindyMG/chipurobot.git
+cd chipurobot
 ```
 
-### 2: Install Dependencies
+### 2. Install Python Dependencies
 
-Make sure you have Python 3 and pip installed. Then run:
-```
+Ensure Python 3.9+ and pip are installed. Then run:
+
+```bash
 pip install -r requirements.txt
 ```
 
-This installs all necessary Python libraries, including opencv-python, gpiozero, and others used for camera streaming, motor control, and connectivity.
+### 3. Enable Interfaces
 
-### 3: Hardware Assembly
-- Components Required:
+Run Raspberry Pi configuration:
 
-Raspberry Pi 5 – The main controller running the robot’s code.
-
-PiCamera 2 – Captures video for object tracking and AI extensions.
-
-Motor Driver (L298N or similar) – Interfaces between the Pi and DC motors.
-
-DC Motors (x2) – Drive the left and right wheels.
-
-Robot Chassis – Holds all components together.
-
-Wheels (x2) – Mounted on the motor shafts.
-
-Caster Wheel (x1) – For balance and free movement.
-
-LiPo Battery (7.4V or similar) – Powers the motors.
-
-Power Bank (5V, 2A or higher) – Powers the Raspberry Pi independently.
-
-- Wiring Overview
-
-Connect the motor driver input pins to the designated GPIO pins on the Pi (as defined in your code).
-
-Attach the motors to the driver outputs.
-
-Power the driver module using the LiPo battery.
-
-Use a separate power bank for the Pi to prevent current fluctuations.
-
-Plug in the PiCamera 2 ribbon cable to the CSI port.
-
-* Ensure common ground between the Raspberry Pi and the motor driver for proper signal communication.
-
-### 4: Software Configuration
-1. Enable Camera and GPIO Access
-
-Run the Raspberry Pi configuration tool:
-```
+```bash
 sudo raspi-config
 ```
 
-- Enable Camera Interface
+Enable:
 
-- Enable GPIO/I2C/SPI
+- Camera
+- I2C
+- SPI
+- GPIO
+- SSH (optional)
 
-- Reboot the Pi after changes
+Reboot afterward.
 
-2. Connect Raspberry Pi Remotely
+### 4. Run Any Module
 
-Install and configure Raspberry Pi Connect (for remote access and testing):
-```
-sudo apt update
-sudo apt install raspberrypi-connect
-```
+Each module has a standalone script:
 
-Once installed, you can view and control the Pi remotely from your browser.
-
-### 5: Running the Robot Program
-
-To start the robot’s control script:
-```
-computer_vision.py
+```bash
+python3 user_detection.py         # Module 1: Person Following
+python3 autonomous_navigation.py  # Module 2: Obstacle Avoidance
+python3 voice_control.py          # Module 3: Voice Commands
 ```
 
-This initializes the motor driver, camera feed, and GPIO pins.
-Currently, the robot supports basic movement controls (forward, backward, left, right, stop) via code execution.
+Make sure connected peripherals (motors, camera, mic) are properly wired.
 
-Obstacle detection and avoidance using LIDAR will be integrated in future updates.
+---
 
-### 6: Testing & Troubleshooting
+## Educational Value
 
-Verify motor polarity — reverse GPIO assignments if direction is incorrect.
+The kit allows learners to:
 
-If the camera doesn’t initialise, check ribbon seating and libcamera permissions.
+- Build, test, and iterate real-world automation systems
+- Understand core robotics principles (e.g., motion planning, control logic)
+- Explore AI concepts through vision and voice interfaces
+- Engage in creative problem-solving and tinkering
 
-Always test each subsystem (motors, camera, connectivity) separately before combining them.
-
-## Educational Impact
-
-The robot serves as a practical teaching tool for:
-
-- Understanding **embedded systems** and **sensor integration**.  
-- Learning **robotics fundamentals** such as motion control and feedback loops.  
-- Introducing students to **AI and automation principles** through voice-based interaction.  
-
-This aligns with the broader goal of **enhancing hands-on STEM learning** across Kenyan schools and innovation spaces.
+This reinforces CBC competencies in computational thinking, innovation, and applied science.
 
 ---
 
@@ -178,5 +167,4 @@ This aligns with the broader goal of **enhancing hands-on STEM learning** across
 
 **Cindy Mugure**  
 Final Year Project – BSc. Computer Science  
-2025 
-
+2025
