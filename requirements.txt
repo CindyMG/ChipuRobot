@@ -1,0 +1,11 @@
+opencv-python
+numpy
+gpiozero
+RPi.GPIO
+picamera2
+pyaudio
+vosk
+librosa
+sounddevice
+scipy
+
